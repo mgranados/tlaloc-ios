@@ -13,6 +13,10 @@
 		21BED98726AF28FF004949E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BED98526AF28FF004949E0 /* Main.storyboard */; };
 		21BED98926AF2902004949E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BED98826AF2902004949E0 /* Assets.xcassets */; };
 		21BED98C26AF2902004949E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BED98A26AF2902004949E0 /* LaunchScreen.storyboard */; };
+		21BED99526AF6DB2004949E0 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED99426AF6DB2004949E0 /* Landmark.swift */; };
+		21BED99726AF6DC4004949E0 /* WeatherReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED99626AF6DC4004949E0 /* WeatherReport.swift */; };
+		21BED99A26AF74AD004949E0 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED99926AF74AD004949E0 /* WeatherStore.swift */; };
+		21BED99C26B0E2D9004949E0 /* LocalWeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED99B26B0E2D9004949E0 /* LocalWeatherStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		21BED98B26AF2902004949E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BED98D26AF2902004949E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21BED99326AF5601004949E0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		21BED99426AF6DB2004949E0 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		21BED99626AF6DC4004949E0 /* WeatherReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherReport.swift; sourceTree = "<group>"; };
+		21BED99926AF74AD004949E0 /* WeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
+		21BED99B26B0E2D9004949E0 /* LocalWeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +65,7 @@
 		21BED97E26AF28FF004949E0 /* tlaloc */ = {
 			isa = PBXGroup;
 			children = (
+				21BED99826AF730F004949E0 /* Model */,
 				21BED97F26AF28FF004949E0 /* AppDelegate.swift */,
 				21BED98126AF28FF004949E0 /* SceneDelegate.swift */,
 				21BED98326AF28FF004949E0 /* ViewController.swift */,
@@ -67,6 +76,17 @@
 				21BED99326AF5601004949E0 /* README.md */,
 			);
 			path = tlaloc;
+			sourceTree = "<group>";
+		};
+		21BED99826AF730F004949E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21BED99926AF74AD004949E0 /* WeatherStore.swift */,
+				21BED99B26B0E2D9004949E0 /* LocalWeatherStore.swift */,
+				21BED99626AF6DC4004949E0 /* WeatherReport.swift */,
+				21BED99426AF6DB2004949E0 /* Landmark.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21BED99A26AF74AD004949E0 /* WeatherStore.swift in Sources */,
 				21BED98426AF28FF004949E0 /* ViewController.swift in Sources */,
 				21BED98026AF28FF004949E0 /* AppDelegate.swift in Sources */,
+				21BED99C26B0E2D9004949E0 /* LocalWeatherStore.swift in Sources */,
+				21BED99726AF6DC4004949E0 /* WeatherReport.swift in Sources */,
 				21BED98226AF28FF004949E0 /* SceneDelegate.swift in Sources */,
+				21BED99526AF6DB2004949E0 /* Landmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
