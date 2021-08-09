@@ -8,8 +8,13 @@
 import UIKit
 
 class LandmarkDetailViewController: UITableViewController {
+    let cellId = "hourlyTableCell"
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(HourlyWeatherTableViewCell.self, forCellReuseIdentifier: cellId)
+
         view.backgroundColor = .black
 
         let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 200))
@@ -55,7 +60,6 @@ class LandmarkDetailViewController: UITableViewController {
             centigrades.leftAnchor.constraint(equalTo: rainDescriptor.leftAnchor)
         ])
 
-
         tableView.tableHeaderView = headerView
     }
 
@@ -64,10 +68,11 @@ class LandmarkDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyWeatherTableViewCell
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected a cell")
+        print("Selected cell: \(indexPath.row)")
     }
 }
