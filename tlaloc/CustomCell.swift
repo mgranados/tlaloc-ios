@@ -41,6 +41,7 @@ class CustomCell: UICollectionViewCell {
         let bigConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let weatherIcon = UIImage(systemName: "cloud.sun.rain.fill", withConfiguration: bigConfiguration)
         let iconView = UIImageView(image: weatherIcon)
+        iconView.tintColor = .white
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(titleLabel)
@@ -48,17 +49,28 @@ class CustomCell: UICollectionViewCell {
         addSubview(iconView)
         addSubview(descriptionLabel)
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 
-        iconView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        iconView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
-
-        temperatureLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24).isActive = true
-        temperatureLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        temperatureLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        temperatureLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
 
         descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        descriptionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+
+        iconView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24).isActive = true
+        iconView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+
+        let selectedBg = UIView(frame: bounds)
+        selectedBg.backgroundColor = .red
+        selectedBg.layer.cornerRadius = 10
+        self.selectedBackgroundView = selectedBg
+        let slightlyMoved = CGPoint(x: self.layer.bounds.midX + 5, y: self.layer.bounds.midY - 5)
+        self.selectedBackgroundView?.layer.position = slightlyMoved
+
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.cornerRadius = 10
         
     }
 
