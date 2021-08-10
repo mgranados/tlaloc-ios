@@ -8,7 +8,6 @@
 import UIKit
 
 class HourlyWeatherTableViewCell: UITableViewCell {
-
     var hourLabel: UILabel = {
         let hour = UILabel()
         hour.text = "19:00"
