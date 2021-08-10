@@ -9,6 +9,7 @@ import UIKit
 
 class LandmarkDetailViewController: UITableViewController {
     let cellId = "hourlyTableCell"
+    var selectedLandmark: Landmark? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,28 +20,28 @@ class LandmarkDetailViewController: UITableViewController {
 
         let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 200))
         let titleLabel = UILabel()
-        titleLabel.text = "Roma Norte"
+        titleLabel.text = selectedLandmark?.name
         titleLabel.font = UIFont.systemFont(ofSize: 48)
         titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let centigrades = UILabel()
-        centigrades.text = "19°C"
+        if let temperature = selectedLandmark?.weatherReports.first?.temperature {
+            centigrades.text = "\(Int(temperature))°C"
+        }
         centigrades.font = UIFont.systemFont(ofSize: 24)
         centigrades.textColor = .white
         centigrades.translatesAutoresizingMaskIntoConstraints = false
 
         let rainDescriptor = UILabel()
-        rainDescriptor.text = "It will rain in 3 hours"
+        if let description = selectedLandmark?.description {
+            rainDescriptor.text = description
+        }
         rainDescriptor.font = UIFont.systemFont(ofSize: 20)
         rainDescriptor.textColor = .white
         rainDescriptor.translatesAutoresizingMaskIntoConstraints = false
 
-        let bigConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let weatherIcon = UIImage(systemName: "cloud.sun.rain.fill", withConfiguration: bigConfiguration)
-        let iconView = UIImageView(image: weatherIcon)
-        iconView.tintColor = .white
-        iconView.translatesAutoresizingMaskIntoConstraints = false
+        let iconView = getWeatherIcon()
         
         headerView.addSubview(titleLabel)
         headerView.addSubview(centigrades)
@@ -64,15 +65,30 @@ class LandmarkDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        24
+        return selectedLandmark?.weatherReports.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyWeatherTableViewCell
+        let weatherReport = selectedLandmark?.weatherReports[indexPath.row]
+        if let temperature = weatherReport?.temperature {
+            cell.degreesLabel.text = "\(Int(temperature))°C"
+        }
+        cell.hourLabel.text = weatherReport?.time
+        cell.rainDescriptionLabel.text = "\(weatherReport?.tomorrowCode ?? 0)"
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected cell: \(indexPath.row)")
+    }
+
+    func getWeatherIcon() -> UIImageView {
+        let bigConfiguration = UIImage.SymbolConfiguration(scale: .large)
+        let weatherIcon = UIImage(systemName: "cloud.sun.rain.fill", withConfiguration: bigConfiguration)
+        let iconView = UIImageView(image: weatherIcon)
+        iconView.tintColor = .white
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        return iconView
     }
 }
