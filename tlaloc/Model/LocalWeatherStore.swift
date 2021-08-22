@@ -8,6 +8,10 @@
 import Foundation
 
 struct LocalWeatherStore: WeatherStore {
+    func updateLandmarks(_ completion: @escaping () -> ()) {
+        print("not here yet")
+    }
+
     var landmarks: [Landmark] {
         get {
             let defaultLandmarks = [
@@ -44,5 +48,9 @@ struct LocalWeatherStore: WeatherStore {
             ]
             return defaultLandmarks
         }
+    }
+
+    func updateLandmarks() {
+        print("No Local Update Needed")
     }
 }

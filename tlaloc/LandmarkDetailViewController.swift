@@ -21,12 +21,12 @@ class LandmarkDetailViewController: UITableViewController {
         let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 200))
         let titleLabel = UILabel()
         titleLabel.text = selectedLandmark?.name
-        titleLabel.font = UIFont.systemFont(ofSize: 48)
+        titleLabel.font = UIFont.systemFont(ofSize: 34)
         titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let centigrades = UILabel()
-        if let temperature = selectedLandmark?.weatherReports.first?.temperature {
+        if let temperature = selectedLandmark?.weatherReports?.first?.temperature {
             centigrades.text = "\(Int(temperature))°C"
         }
         centigrades.font = UIFont.systemFont(ofSize: 24)
@@ -65,12 +65,12 @@ class LandmarkDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedLandmark?.weatherReports.count ?? 0
+        return selectedLandmark?.weatherReports?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyWeatherTableViewCell
-        let weatherReport = selectedLandmark?.weatherReports[indexPath.row]
+        let weatherReport = selectedLandmark?.weatherReports?[indexPath.row]
         if let temperature = weatherReport?.temperature {
             cell.degreesLabel.text = "\(Int(temperature))°C"
         }
