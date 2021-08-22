@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2129ACF726D1421F00996D17 /* NetworkWeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129ACF626D1421F00996D17 /* NetworkWeatherStore.swift */; };
+		2129ACF926D1497600996D17 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129ACF826D1497600996D17 /* NetworkManager.swift */; };
+		2129ACFB26D1C81600996D17 /* LandmarksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */; };
 		212D272926B45B4C0049253E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272826B45B4C0049253E /* CustomCell.swift */; };
 		212D272B26B5CBD50049253E /* LandmarkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */; };
 		21BED98026AF28FF004949E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED97F26AF28FF004949E0 /* AppDelegate.swift */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2129ACF626D1421F00996D17 /* NetworkWeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherStore.swift; sourceTree = "<group>"; };
+		2129ACF826D1497600996D17 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksDataSource.swift; sourceTree = "<group>"; };
 		212D272826B45B4C0049253E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailViewController.swift; sourceTree = "<group>"; };
 		21BED97C26AF28FF004949E0 /* tlaloc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tlaloc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,11 +76,13 @@
 			isa = PBXGroup;
 			children = (
 				21BED99826AF730F004949E0 /* Model */,
+				2129ACF826D1497600996D17 /* NetworkManager.swift */,
 				21BED97F26AF28FF004949E0 /* AppDelegate.swift */,
 				21BED98126AF28FF004949E0 /* SceneDelegate.swift */,
 				212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */,
 				21E2684326BF437500C955AA /* HourlyWeatherTableViewCell.swift */,
 				21BED98326AF28FF004949E0 /* ViewController.swift */,
+				2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */,
 				212D272826B45B4C0049253E /* CustomCell.swift */,
 				21BED98826AF2902004949E0 /* Assets.xcassets */,
 				21BED98A26AF2902004949E0 /* LaunchScreen.storyboard */,
@@ -89,6 +97,7 @@
 			children = (
 				21BED99926AF74AD004949E0 /* WeatherStore.swift */,
 				21BED99B26B0E2D9004949E0 /* LocalWeatherStore.swift */,
+				2129ACF626D1421F00996D17 /* NetworkWeatherStore.swift */,
 				21BED99626AF6DC4004949E0 /* WeatherReport.swift */,
 				21BED99426AF6DB2004949E0 /* Landmark.swift */,
 			);
@@ -164,6 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2129ACFB26D1C81600996D17 /* LandmarksDataSource.swift in Sources */,
+				2129ACF926D1497600996D17 /* NetworkManager.swift in Sources */,
 				21E2684426BF437500C955AA /* HourlyWeatherTableViewCell.swift in Sources */,
 				21BED99A26AF74AD004949E0 /* WeatherStore.swift in Sources */,
 				21BED98426AF28FF004949E0 /* ViewController.swift in Sources */,
@@ -171,6 +182,7 @@
 				212D272B26B5CBD50049253E /* LandmarkDetailViewController.swift in Sources */,
 				21BED99C26B0E2D9004949E0 /* LocalWeatherStore.swift in Sources */,
 				21BED99726AF6DC4004949E0 /* WeatherReport.swift in Sources */,
+				2129ACF726D1421F00996D17 /* NetworkWeatherStore.swift in Sources */,
 				21BED98226AF28FF004949E0 /* SceneDelegate.swift in Sources */,
 				212D272926B45B4C0049253E /* CustomCell.swift in Sources */,
 				21BED99526AF6DB2004949E0 /* Landmark.swift in Sources */,

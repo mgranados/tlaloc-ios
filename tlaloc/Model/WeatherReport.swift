@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherReport {
+struct WeatherReport: Codable {
     var time: String
     var temperature: Double
     var tomorrowCode: Int

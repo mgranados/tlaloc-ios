@@ -7,6 +7,8 @@
 
 import Foundation
 
+
 protocol WeatherStore {
     var landmarks: [Landmark] { get }
+    func updateLandmarks(_ completion: @escaping () -> ())
 }
