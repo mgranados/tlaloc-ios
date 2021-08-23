@@ -28,7 +28,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width
+        let width = view.frame.width - 8
         let height = CGFloat(90)
 
         return CGSize(width: width, height: height)
@@ -63,11 +63,34 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return UICollectionViewCell()
         }
         cell?.titleLabel.text = landmark.name
-        cell?.descriptionLabel.text = landmark.description
+
+        let humanDescription = humanIntervalFromDescription(landmark.description)
+
+        cell?.descriptionLabel.text = "Next rain: \(humanDescription ?? "honestly, don't know.")"
         if let temperature = landmark.weatherReports?.first?.temperature {
             cell?.temperatureLabel.text = "\(Int(temperature))°C"
         }
         return cell ?? UICollectionViewCell()
 
+    }
+
+    func humanIntervalFromDescription(_ description: String) -> String? {
+        let unmodifiedDescription = description
+        let descriptionArray =  unmodifiedDescription.components(separatedBy: "rain:")
+        let lastOfDescription = descriptionArray.last
+        if let trimmed = lastOfDescription?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = Locale.current
+            if let nextRainDate = dateFormatter.date(from: trimmed) {
+                let untilThen = Date().distance(to: nextRainDate)
+                let formatter = RelativeDateTimeFormatter()
+                formatter.dateTimeStyle = .named
+                let str = formatter.localizedString(fromTimeInterval: untilThen)
+                return str
+            }
+        }
+        return nil
     }
 }
