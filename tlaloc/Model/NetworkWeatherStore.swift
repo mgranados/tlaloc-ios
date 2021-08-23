@@ -11,7 +11,6 @@ class NetworkWeatherStore: WeatherStore {
     var landmarks: [Landmark] = []
     var networkManager = NetworkManager()
 
-
     func updateLandmarks(_ completion: @escaping () -> ()) {
         networkManager.getLandmarksDetailed{ (updatedLandmarks) in
             self.landmarks = updatedLandmarks
