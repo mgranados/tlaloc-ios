@@ -25,6 +25,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 self?.collectionView.reloadData()
             }
         }
+
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.tintColor = UIColor.red
+        collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshLandmarks), for: .valueChanged)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -74,6 +78,20 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     }
 
+    @objc func handleRefreshLandmarks() {
+        self.collectionView.refreshControl?.beginRefreshing()
+        networkManager.getLandmarksDetailed {
+            [weak self] (newLandmarks) in
+            DispatchQueue.main.async {
+                self?.landmarks = newLandmarks
+                self?.collectionView.reloadData()
+                self?.collectionView.refreshControl?.endRefreshing()
+            }
+        }
+
+    }
+
+    // TODO: move to extension
     func humanIntervalFromDescription(_ description: String) -> String? {
         let unmodifiedDescription = description
         let descriptionArray =  unmodifiedDescription.components(separatedBy: "rain:")
