@@ -75,7 +75,7 @@ class LandmarkDetailViewController: UITableViewController {
         if let temperature = weatherReport?.temperature {
             cell.degreesLabel.text = "\(Int(temperature))°C"
         }
-        cell.hourLabel.text = weatherReport?.time
+        cell.hourLabel.text = weatherReport?.time.humanDateTime()
         cell.rainDescriptionLabel.text = "\(weatherReport?.tomorrowCode ?? 0)"
         return cell
     }
