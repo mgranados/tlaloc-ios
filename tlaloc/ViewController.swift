@@ -68,8 +68,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         cell?.titleLabel.text = landmark.name
 
-        let humanDescription = humanIntervalFromDescription(landmark.description)
-
+        let humanDescription = landmark.description.humanIntervalFromDescription()
         cell?.descriptionLabel.text = "Next rain: \(humanDescription ?? "honestly, don't know.")"
         if let temperature = landmark.weatherReports?.first?.temperature {
             cell?.temperatureLabel.text = "\(Int(temperature))°C"
@@ -88,27 +87,5 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 self?.collectionView.refreshControl?.endRefreshing()
             }
         }
-
-    }
-
-    // TODO: move to extension
-    func humanIntervalFromDescription(_ description: String) -> String? {
-        let unmodifiedDescription = description
-        let descriptionArray =  unmodifiedDescription.components(separatedBy: "rain:")
-        let lastOfDescription = descriptionArray.last
-        if let trimmed = lastOfDescription?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
-            dateFormatter.timeZone = TimeZone.current
-            dateFormatter.locale = Locale.current
-            if let nextRainDate = dateFormatter.date(from: trimmed) {
-                let untilThen = Date().distance(to: nextRainDate)
-                let formatter = RelativeDateTimeFormatter()
-                formatter.dateTimeStyle = .named
-                let str = formatter.localizedString(fromTimeInterval: untilThen)
-                return str
-            }
-        }
-        return nil
     }
 }
