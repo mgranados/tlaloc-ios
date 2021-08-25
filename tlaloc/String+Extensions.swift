@@ -20,4 +20,24 @@ extension String {
         }
         return nil
     }
+
+    func humanIntervalFromDescription() -> String? {
+        let unmodifiedDescription = self
+        let descriptionArray =  unmodifiedDescription.components(separatedBy: "rain:")
+        let lastOfDescription = descriptionArray.last
+        if let trimmed = lastOfDescription?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = Locale.current
+            if let nextRainDate = dateFormatter.date(from: trimmed) {
+                let untilThen = Date().distance(to: nextRainDate)
+                let formatter = RelativeDateTimeFormatter()
+                formatter.dateTimeStyle = .named
+                let str = formatter.localizedString(fromTimeInterval: untilThen)
+                return str
+            }
+        }
+        return nil
+    }
 }

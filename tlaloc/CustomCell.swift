@@ -35,14 +35,18 @@ class CustomCell: UICollectionViewCell {
         return label
     }()
 
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var iconView: UIImageView = {
         let bigConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let weatherIcon = UIImage(systemName: "cloud.sun.rain.fill", withConfiguration: bigConfiguration)
+        let weatherIcon = UIImage(systemName: "sun.fill", withConfiguration: bigConfiguration)
         let iconView = UIImageView(image: weatherIcon)
         iconView.tintColor = .white
         iconView.translatesAutoresizingMaskIntoConstraints = false
+        return UIImageView()
+    }()
+
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         addSubview(titleLabel)
         addSubview(temperatureLabel)
