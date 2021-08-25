@@ -42,7 +42,7 @@ class LandmarkDetailViewController: UITableViewController {
         rainDescriptor.textColor = .white
         rainDescriptor.translatesAutoresizingMaskIntoConstraints = false
 
-        let iconView = getWeatherIcon()
+        let iconView = getWeatherIcon(weatherCode: selectedLandmark?.weatherReports?.first?.tomorrowCode ?? 0)
         
         headerView.addSubview(titleLabel)
         headerView.addSubview(centigrades)
@@ -75,6 +75,11 @@ class LandmarkDetailViewController: UITableViewController {
         if let temperature = weatherReport?.temperature {
             cell.degreesLabel.text = "\(Int(temperature))°C"
         }
+        if let weatherCode = weatherReport?.tomorrowCode {
+            cell.iconView.image = UIImage(weatherCode: weatherCode)
+            cell.iconView.tintColor = .white
+            cell.iconView.translatesAutoresizingMaskIntoConstraints = false
+        }
         cell.hourLabel.text = weatherReport?.time.humanDateTime()
         cell.rainDescriptionLabel.text = "\(weatherReport?.tomorrowCode ?? 0)"
         return cell
@@ -84,9 +89,8 @@ class LandmarkDetailViewController: UITableViewController {
         print("Selected cell: \(indexPath.row)")
     }
 
-    func getWeatherIcon() -> UIImageView {
-        let bigConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let weatherIcon = UIImage(systemName: "cloud.sun.rain.fill", withConfiguration: bigConfiguration)
+    func getWeatherIcon(weatherCode: Int) -> UIImageView {
+        let weatherIcon = UIImage(weatherCode: weatherCode)
         let iconView = UIImageView(image: weatherIcon)
         iconView.tintColor = .white
         iconView.translatesAutoresizingMaskIntoConstraints = false

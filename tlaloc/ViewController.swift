@@ -73,6 +73,12 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if let temperature = landmark.weatherReports?.first?.temperature {
             cell?.temperatureLabel.text = "\(Int(temperature))°C"
         }
+        if let weatherCode = landmark.weatherReports?.first?.tomorrowCode {
+            cell?.iconView.image = UIImage(weatherCode: weatherCode)
+            cell?.iconView.tintColor = .white
+            cell?.iconView.translatesAutoresizingMaskIntoConstraints = false
+        }
+
         return cell ?? UICollectionViewCell()
 
     }

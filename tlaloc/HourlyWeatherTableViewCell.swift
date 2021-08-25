@@ -38,7 +38,7 @@ class HourlyWeatherTableViewCell: UITableViewCell {
         let iconView = UIImageView(image: weatherIcon)
         iconView.tintColor = .white
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        return iconView
+        return UIImageView()
     }()
 
 
