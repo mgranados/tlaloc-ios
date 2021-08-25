@@ -59,13 +59,13 @@ class HourlyWeatherTableViewCell: UITableViewCell {
         hourLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
 
         rainDescriptionLabel.topAnchor.constraint(equalTo: hourLabel.topAnchor).isActive = true
-        rainDescriptionLabel.leadingAnchor.constraint(equalTo: hourLabel.trailingAnchor, constant: 16).isActive = true
+        rainDescriptionLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 8).isActive = true
+
+        iconView.topAnchor.constraint(equalTo: hourLabel.topAnchor).isActive = true
+        iconView.leadingAnchor.constraint(equalTo: hourLabel.trailingAnchor, constant: 8).isActive = true
 
         degreesLabel.topAnchor.constraint(equalTo: hourLabel.topAnchor).isActive = true
         degreesLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-
-        iconView.topAnchor.constraint(equalTo: hourLabel.topAnchor).isActive = true
-        iconView.leadingAnchor.constraint(equalTo: rainDescriptionLabel.trailingAnchor, constant: 16).isActive = true
 
         let selectedBgView = UIView(frame: bounds)
         selectedBgView.backgroundColor = .red

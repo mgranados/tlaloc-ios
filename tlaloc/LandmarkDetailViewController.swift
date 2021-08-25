@@ -79,9 +79,10 @@ class LandmarkDetailViewController: UITableViewController {
             cell.iconView.image = UIImage(weatherCode: weatherCode)
             cell.iconView.tintColor = .white
             cell.iconView.translatesAutoresizingMaskIntoConstraints = false
+
+            cell.rainDescriptionLabel.text = weatherCode.toWeatherDescription()
         }
         cell.hourLabel.text = weatherReport?.time.humanDateTime()
-        cell.rainDescriptionLabel.text = "\(weatherReport?.tomorrowCode ?? 0)"
         return cell
     }
 
