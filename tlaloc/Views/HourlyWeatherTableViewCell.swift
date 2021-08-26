@@ -55,6 +55,7 @@ class HourlyWeatherTableViewCell: UITableViewCell {
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor(named: "white")?.cgColor
 
+        hourLabel.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
         hourLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
         hourLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
 
