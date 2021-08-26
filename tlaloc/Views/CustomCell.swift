@@ -44,7 +44,6 @@ class CustomCell: UICollectionViewCell {
         return UIImageView()
     }()
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 

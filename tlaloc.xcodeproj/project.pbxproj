@@ -81,17 +81,15 @@
 		21BED97E26AF28FF004949E0 /* tlaloc */ = {
 			isa = PBXGroup;
 			children = (
-				21BED99826AF730F004949E0 /* Model */,
 				2129ACF826D1497600996D17 /* NetworkManager.swift */,
 				21BED97F26AF28FF004949E0 /* AppDelegate.swift */,
 				21DC1FF826D6E3FE00BBE107 /* Int+Extensions.swift */,
 				21BED98126AF28FF004949E0 /* SceneDelegate.swift */,
-				212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */,
-				21E2684326BF437500C955AA /* HourlyWeatherTableViewCell.swift */,
 				21C499EE26D4524900CEAB30 /* String+Extensions.swift */,
-				21BED98326AF28FF004949E0 /* ViewController.swift */,
 				2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */,
-				212D272826B45B4C0049253E /* CustomCell.swift */,
+				21DC1FFB26D6EFD600BBE107 /* ViewControllers */,
+				21BED99826AF730F004949E0 /* Model */,
+				21DC1FFA26D6EFA600BBE107 /* Views */,
 				2138525726D5BF7600D0FAD8 /* UIImage+Extensions.swift */,
 				21BED98826AF2902004949E0 /* Assets.xcassets */,
 				21BED98A26AF2902004949E0 /* LaunchScreen.storyboard */,
@@ -111,6 +109,24 @@
 				21BED99426AF6DB2004949E0 /* Landmark.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		21DC1FFA26D6EFA600BBE107 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21E2684326BF437500C955AA /* HourlyWeatherTableViewCell.swift */,
+				212D272826B45B4C0049253E /* CustomCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		21DC1FFB26D6EFD600BBE107 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */,
+				21BED98326AF28FF004949E0 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
