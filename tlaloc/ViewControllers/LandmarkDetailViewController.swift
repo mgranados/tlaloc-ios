@@ -29,7 +29,7 @@ class LandmarkDetailViewController: UITableViewController {
         if let temperature = selectedLandmark?.weatherReports?.first?.temperature {
             centigrades.text = "\(Int(temperature))°C"
         }
-        centigrades.font = UIFont.systemFont(ofSize: 24)
+        centigrades.font = UIFont.systemFont(ofSize: 22)
         centigrades.textColor = .white
         centigrades.translatesAutoresizingMaskIntoConstraints = false
 
@@ -42,24 +42,34 @@ class LandmarkDetailViewController: UITableViewController {
         rainDescriptor.textColor = .white
         rainDescriptor.translatesAutoresizingMaskIntoConstraints = false
 
-        let iconView = getWeatherIcon(weatherCode: selectedLandmark?.weatherReports?.first?.tomorrowCode ?? 0)
-        
+        var iconView = UIImageView()
+        let nowDescription = UILabel()
+        if let weatherCode = selectedLandmark?.weatherReports?.first?.tomorrowCode {
+            nowDescription.text = "\(weatherCode.toWeatherDescription()) now."
+            iconView = getWeatherIcon(weatherCode: weatherCode)
+        }
+        nowDescription.font = UIFont.systemFont(ofSize: 22)
+        nowDescription.textColor = .white
+        nowDescription.translatesAutoresizingMaskIntoConstraints = false
+
         headerView.addSubview(titleLabel)
         headerView.addSubview(centigrades)
         headerView.addSubview(rainDescriptor)
         headerView.addSubview(iconView)
+        headerView.addSubview(nowDescription)
 
         titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 16).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).isActive = true
-
-        rainDescriptor.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).isActive = true
-        rainDescriptor.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16).isActive = true
 
         NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: rainDescriptor.topAnchor),
-            iconView.leftAnchor.constraint(equalTo: rainDescriptor.rightAnchor, constant: 16),
-            centigrades.topAnchor.constraint(equalTo: rainDescriptor.bottomAnchor, constant: 16),
-            centigrades.leftAnchor.constraint(equalTo: rainDescriptor.leftAnchor)
+            iconView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            iconView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            nowDescription.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
+            nowDescription.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 8),
+            centigrades.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
+            centigrades.leadingAnchor.constraint(equalTo: nowDescription.trailingAnchor, constant: 8),
+            rainDescriptor.topAnchor.constraint(equalTo: nowDescription.bottomAnchor, constant: 16),
+            rainDescriptor.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16)
         ])
 
         tableView.tableHeaderView = headerView
