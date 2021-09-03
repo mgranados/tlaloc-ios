@@ -69,7 +69,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell?.titleLabel.text = landmark.name
 
         let humanDescription = landmark.description.humanIntervalFromDescription()
-        cell?.descriptionLabel.text = "Next rain: \(humanDescription ?? "honestly, don't know.")"
+        cell?.descriptionLabel.text = "\(humanDescription ?? "Honestly, don't know.")"
         if let temperature = landmark.weatherReports?.first?.temperature {
             cell?.temperatureLabel.text = "\(Int(temperature))°C"
         }
