@@ -16,8 +16,9 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
-        tabBarController?.selectedIndex = 0
+        tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
+        tabBarController?.selectedIndex = 1
+
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
 
         networkManager.getLandmarksDetailed {
