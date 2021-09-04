@@ -8,7 +8,26 @@
 import UIKit
 
 class MapViewController: UIViewController {
-    
+
+    let arenaLabel: UILabel = {
+        let landmarkLabel = UILabel()
+        landmarkLabel.text = "Arena CDMX"
+        landmarkLabel.textColor = .white
+        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
+        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
+        return landmarkLabel
+    }()
+
+    let arenaRainLabel: UILabel = {
+        let rainLabel = UILabel()
+        rainLabel.text = "Rain in 20 hours"
+        rainLabel.textColor = .white
+        rainLabel.font = UIFont.systemFont(ofSize: 15)
+
+        rainLabel.translatesAutoresizingMaskIntoConstraints = false
+        return rainLabel
+    }()
+
     override func viewDidLoad() {
         tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
         tabBarController?.selectedIndex = 0
@@ -16,6 +35,15 @@ class MapViewController: UIViewController {
         let backgroundImageView = UIImageView(frame: view.bounds)
         backgroundImageView.image = UIImage(named: "mexicoMap")
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        self.view.addSubview(backgroundImageView)
+
+        view.addSubview(backgroundImageView)
+        view.addSubview(arenaLabel)
+        view.addSubview(arenaRainLabel)
+
+        arenaLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+        arenaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100).isActive = true
+        arenaRainLabel.topAnchor.constraint(equalTo: arenaLabel.bottomAnchor).isActive = true
+        arenaRainLabel.centerXAnchor.constraint(equalTo: arenaLabel.centerXAnchor).isActive = true
+
     }
 }
