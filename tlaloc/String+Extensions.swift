@@ -38,7 +38,7 @@ extension String {
                 }
                 formatter.dateTimeStyle = .named
                 let str = formatter.localizedString(fromTimeInterval: untilThen)
-                return "Rain in: \(str)"
+                return "Rain \(str)"
             }
         }
         return nil
