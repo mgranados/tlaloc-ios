@@ -11,7 +11,7 @@ class MapViewController: UIViewController {
 
     let arenaLabel: UILabel = {
         let landmarkLabel = UILabel()
-        landmarkLabel.text = "Arena CDMX"
+        landmarkLabel.text = "Arena"
         landmarkLabel.textColor = .white
         landmarkLabel.font = UIFont.systemFont(ofSize: 14)
         landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
 
     let arenaRainLabel: UILabel = {
         let rainLabel = UILabel()
-        rainLabel.text = "Rain in 20 hours"
+        rainLabel.text = "Rain in 20h"
         rainLabel.textColor = .white
         rainLabel.font = UIFont.systemFont(ofSize: 15)
 
@@ -33,8 +33,8 @@ class MapViewController: UIViewController {
         tabBarController?.selectedIndex = 0
 
         let backgroundImageView = UIImageView(frame: view.bounds)
-        backgroundImageView.image = UIImage(named: "mexicoMap")
-        backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(.red)
+        backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
 
         view.addSubview(backgroundImageView)
         view.addSubview(arenaLabel)
