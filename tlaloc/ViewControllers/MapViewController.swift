@@ -8,7 +8,9 @@
 import UIKit
 
 class MapViewController: UIViewController {
-
+    var networkManager = NetworkManager()
+    var landmarks: [Landmark?] = []
+    
     let arenaLabel: UILabel = {
         let landmarkLabel = UILabel()
         landmarkLabel.text = "Arena"
@@ -286,6 +288,15 @@ class MapViewController: UIViewController {
         tabBarItem = UITabBarItem(title: "Map", image: mapImage, tag: 0)
         tabBarController?.selectedIndex = 0
 
+        networkManager.getLandmarks {
+            [weak self] (newLandmarks) in
+            DispatchQueue.main.async {
+                self?.landmarks = newLandmarks
+                self?.refreshRainData()
+            }
+        }
+
+
         let backgroundImageView = UIImageView(frame: view.bounds)
         backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(.red)
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
@@ -396,5 +407,60 @@ class MapViewController: UIViewController {
         xochimilcoLabel.leadingAnchor.constraint(equalTo: aztecaLabel.trailingAnchor).isActive = true
         xochimilcoRainLabel.topAnchor.constraint(equalTo: xochimilcoLabel.bottomAnchor).isActive = true
         xochimilcoRainLabel.centerXAnchor.constraint(equalTo: xochimilcoLabel.centerXAnchor).isActive = true
+
+    }
+
+    func refreshRainData() {
+        let arenaDescription = getLandmarkDescription(for: "Arena Ciudad de Mexico")
+        arenaRainLabel.text = arenaDescription
+
+        let basilicaDescription = getLandmarkDescription(for: "Basílica de Guadalupe")
+        basilicaRainLabel.text = basilicaDescription
+
+        let bicentenarioDescription = getLandmarkDescription(for: "Parque Bicentenario")
+        bicentenarioRainLabel.text = bicentenarioDescription
+
+        let buenavistaDescription = getLandmarkDescription(for: "Fórum Buenavista")
+        buenavistaRainLabel.text = buenavistaDescription
+
+        let soumayaDescription = getLandmarkDescription(for: "Museo Soumaya")
+        soumayaRainLabel.text = soumayaDescription
+
+        let airportDescription = getLandmarkDescription(for: "Aeropuerto")
+        airportRainLabel.text = airportDescription
+
+        let castleDescription = getLandmarkDescription(for: "Castillo de Chapultepec")
+        castleRainLabel.text = castleDescription
+
+        let condesaDescription = getLandmarkDescription(for: "Parque México")
+        condesaRainLabel.text = condesaDescription
+
+        let santafeDescription = getLandmarkDescription(for: "Santa Fé")
+        santafeRainLabel.text = santafeDescription
+
+        let cinetecaDescription = getLandmarkDescription(for: "Cineteca")
+        cinetecaRainLabel.text = cinetecaDescription
+
+        let abastosDescription = getLandmarkDescription(for: "Central de Abastos")
+        abastosRainLabel.text = abastosDescription
+
+        let unamDescription = getLandmarkDescription(for: "UNAM")
+        unamRainLabel.text = unamDescription
+
+        let aztecaDescription = getLandmarkDescription(for: "Estadio Azteca")
+        aztecaRainLabel.text = aztecaDescription
+
+        let sixflagsDescription = getLandmarkDescription(for: "Six Flags")
+        sixflagsRainLabel.text = sixflagsDescription
+
+        let xochimilcoDescription = getLandmarkDescription(for: "Trajineras Xochimilco")
+        xochimilcoRainLabel.text = xochimilcoDescription
+    }
+
+    func getLandmarkDescription(for name: String) -> String? {
+        guard let landmarkIndex = self.landmarks.firstIndex(where: {$0?.name == name}) else { return nil }
+        let landmarkData = self.landmarks[landmarkIndex]
+        let landmarkDescription = landmarkData?.description.humanIntervalFromDescription()?.replacingOccurrences(of: " hours", with: "h")
+        return landmarkDescription?.replacingOccurrences(of: " minutes", with: "m")
     }
 }
