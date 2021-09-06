@@ -13,9 +13,11 @@
 		212D272926B45B4C0049253E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272826B45B4C0049253E /* CustomCell.swift */; };
 		212D272B26B5CBD50049253E /* LandmarkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */; };
 		2138525826D5BF7600D0FAD8 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138525726D5BF7600D0FAD8 /* UIImage+Extensions.swift */; };
+		2190604C26E3F22B0053D9BF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2190604B26E3F22B0053D9BF /* TabBarViewController.swift */; };
+		2190604E26E411F80053D9BF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2190604D26E411F80053D9BF /* MapViewController.swift */; };
 		21BED98026AF28FF004949E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED97F26AF28FF004949E0 /* AppDelegate.swift */; };
 		21BED98226AF28FF004949E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED98126AF28FF004949E0 /* SceneDelegate.swift */; };
-		21BED98426AF28FF004949E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED98326AF28FF004949E0 /* ViewController.swift */; };
+		21BED98426AF28FF004949E0 /* LandmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED98326AF28FF004949E0 /* LandmarksViewController.swift */; };
 		21BED98926AF2902004949E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BED98826AF2902004949E0 /* Assets.xcassets */; };
 		21BED98C26AF2902004949E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BED98A26AF2902004949E0 /* LaunchScreen.storyboard */; };
 		21BED99526AF6DB2004949E0 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BED99426AF6DB2004949E0 /* Landmark.swift */; };
@@ -34,10 +36,12 @@
 		212D272826B45B4C0049253E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailViewController.swift; sourceTree = "<group>"; };
 		2138525726D5BF7600D0FAD8 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		2190604B26E3F22B0053D9BF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		2190604D26E411F80053D9BF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		21BED97C26AF28FF004949E0 /* tlaloc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tlaloc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BED97F26AF28FF004949E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21BED98126AF28FF004949E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		21BED98326AF28FF004949E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		21BED98326AF28FF004949E0 /* LandmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksViewController.swift; sourceTree = "<group>"; };
 		21BED98826AF2902004949E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BED98B26AF2902004949E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BED98D26AF2902004949E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,8 +127,10 @@
 		21DC1FFB26D6EFD600BBE107 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2190604B26E3F22B0053D9BF /* TabBarViewController.swift */,
 				212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */,
-				21BED98326AF28FF004949E0 /* ViewController.swift */,
+				21BED98326AF28FF004949E0 /* LandmarksViewController.swift */,
+				2190604D26E411F80053D9BF /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -202,14 +208,16 @@
 				2129ACF926D1497600996D17 /* NetworkManager.swift in Sources */,
 				21E2684426BF437500C955AA /* HourlyWeatherTableViewCell.swift in Sources */,
 				21BED99A26AF74AD004949E0 /* WeatherStore.swift in Sources */,
-				21BED98426AF28FF004949E0 /* ViewController.swift in Sources */,
+				21BED98426AF28FF004949E0 /* LandmarksViewController.swift in Sources */,
 				21DC1FF926D6E3FE00BBE107 /* Int+Extensions.swift in Sources */,
 				21BED98026AF28FF004949E0 /* AppDelegate.swift in Sources */,
 				212D272B26B5CBD50049253E /* LandmarkDetailViewController.swift in Sources */,
 				21BED99C26B0E2D9004949E0 /* LocalWeatherStore.swift in Sources */,
+				2190604C26E3F22B0053D9BF /* TabBarViewController.swift in Sources */,
 				21C499EF26D4524900CEAB30 /* String+Extensions.swift in Sources */,
 				21BED99726AF6DC4004949E0 /* WeatherReport.swift in Sources */,
 				2129ACF726D1421F00996D17 /* NetworkWeatherStore.swift in Sources */,
+				2190604E26E411F80053D9BF /* MapViewController.swift in Sources */,
 				21BED98226AF28FF004949E0 /* SceneDelegate.swift in Sources */,
 				212D272926B45B4C0049253E /* CustomCell.swift in Sources */,
 				21BED99526AF6DB2004949E0 /* Landmark.swift in Sources */,

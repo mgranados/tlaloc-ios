@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class LandmarksViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     public let cellId: String = "cellId"
     var weatherStore: WeatherStore? = nil
     var networkManager = NetworkManager()
@@ -15,6 +15,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
+        tabBarController?.selectedIndex = 1
 
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
 

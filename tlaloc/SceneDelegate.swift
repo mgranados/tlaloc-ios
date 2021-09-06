@@ -22,8 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let layout = UICollectionViewFlowLayout()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        let rootViewController = ViewController(collectionViewLayout: layout)
-        rootViewController.weatherStore = weatherStore
+
+        let landmarksViewController = LandmarksViewController(collectionViewLayout: layout)
+        landmarksViewController.weatherStore = weatherStore
+
+        let mapViewController = MapViewController()
+        
+        let rootViewController = TabBarViewController()
+        rootViewController.setViewControllers([mapViewController, landmarksViewController], animated: true)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
