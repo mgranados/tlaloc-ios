@@ -281,7 +281,9 @@ class MapViewController: UIViewController {
     }()
 
     override func viewDidLoad() {
-        tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        let config = UIImage.SymbolConfiguration(scale: .default)
+        let mapImage = UIImage(systemName: "map.fill", withConfiguration: config)
+        tabBarItem = UITabBarItem(title: "Map", image: mapImage, tag: 0)
         tabBarController?.selectedIndex = 0
 
         let backgroundImageView = UIImageView(frame: view.bounds)
