@@ -13,11 +13,24 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
     var networkManager = NetworkManager()
     var landmarks: [Landmark?] = []
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    override init(collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(collectionViewLayout: layout)
+        let config = UIImage.SymbolConfiguration(scale: .default)
+        let listImage = UIImage(systemName: "list.star", withConfiguration: config)
+        tabBarItem = UITabBarItem(title: "Landmarks", image: listImage, tag: 1)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
-        tabBarController?.selectedIndex = 1
 
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
 
