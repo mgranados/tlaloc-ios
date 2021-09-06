@@ -282,6 +282,15 @@ class MapViewController: UIViewController {
         return rainLabel
     }()
 
+    let titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.text = "CDMX Today"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.systemFont(ofSize: 48, weight: .semibold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
+    }()
+
     override func viewDidLoad() {
         let config = UIImage.SymbolConfiguration(scale: .default)
         let mapImage = UIImage(systemName: "map.fill", withConfiguration: config)
@@ -332,6 +341,8 @@ class MapViewController: UIViewController {
         view.addSubview(sixflagsRainLabel)
         view.addSubview(xochimilcoLabel)
         view.addSubview(xochimilcoRainLabel)
+
+        view.addSubview(titleLabel)
 
         arenaLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: backgroundImageView.bounds.height * 0.165).isActive = true
         arenaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.35).isActive = true
@@ -407,6 +418,9 @@ class MapViewController: UIViewController {
         xochimilcoLabel.leadingAnchor.constraint(equalTo: aztecaLabel.trailingAnchor).isActive = true
         xochimilcoRainLabel.topAnchor.constraint(equalTo: xochimilcoLabel.bottomAnchor).isActive = true
         xochimilcoRainLabel.centerXAnchor.constraint(equalTo: xochimilcoLabel.centerXAnchor).isActive = true
+
+        titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -backgroundImageView.bounds.height * 0.12).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -backgroundImageView.bounds.width * 0.04).isActive = true
 
     }
 
