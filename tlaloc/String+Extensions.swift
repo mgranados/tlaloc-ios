@@ -33,8 +33,12 @@ extension String {
             if let nextRainDate = dateFormatter.date(from: trimmed) {
                 let untilThen = Date().distance(to: nextRainDate)
                 let formatter = RelativeDateTimeFormatter()
+                let aDayInSeconds = 60 * 60 * 24.0
                 if untilThen < 0 {
                     return "Raining right now"
+                }
+                if untilThen >= aDayInSeconds {
+                    return "No Rain"
                 }
                 formatter.dateTimeStyle = .named
                 let str = formatter.localizedString(fromTimeInterval: untilThen)
