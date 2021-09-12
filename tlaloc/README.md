@@ -21,11 +21,11 @@ Landmarks `[lat, long]` :
 - Lagunilla `[19.4435422,-99.1373258]`
 - Six Flags `[19.2956057,-99.2127592]`
 - Trajineras Xochimilco `[19.2677952,-99.1071878]`
-- Cerro Estrella `[19.3438884,-99.0987762]`
+- Cerro Estrella `[19.3438884,-99.0987762]` **DEPRECATED**
 - Central Abastos `[19.3739902,-99.0924632]`
 - Aeropuerto AICM `[19.4360762,-99.0741023]`
 - Parque Delta `[19.4029573,-99.1565445]`
-- Torre Pemex `[19.4391379,-99.1771313]`
+- Torre Pemex `[19.4391379,-99.1771313]` **DEPRECATED**
 - Arena Ciudad de Mexico `[19.4976224,-99.1773167]`
 - Mercado Jamaica `[19.4077323,-99.1307508]` **DEPRECATED**
 - Foro Sol `[19.4075681,-99.1019913]`
