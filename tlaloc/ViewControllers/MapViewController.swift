@@ -10,276 +10,51 @@ import UIKit
 class MapViewController: UIViewController {
     var networkManager = NetworkManager()
     var landmarks: [Landmark?] = []
-    
-    let arenaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Arena"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+
+    let arenaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Arena", rain: "Rain in 35h")
     }()
-
-    let arenaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 20h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let basilicaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Basílica", rain: "Rain in 36h")
     }()
-
-    let basilicaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Basílica"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let bicentenarioLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Bicentenario", rain: "Rain in 37h")
     }()
-
-    let basilicaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "No Rain"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let buenavistaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Buenavista", rain: "Rain in 38h")
     }()
-
-    let bicentenarioLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Bicentenario"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let airportLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Airport", rain: "Rain in 39h")
     }()
-
-    let bicentenarioRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 20h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let soumayaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Soumaya", rain: "Rain in 40h")
     }()
-
-    let buenavistaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Buenavista"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let castleLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Chapultepec", rain: "Rain in 41h")
     }()
-
-    let buenavistaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 18h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let condesaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Condesa", rain: "Rain in 42h")
     }()
-
-    let soumayaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Soumaya"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let santafeLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Santa Fé", rain: "Rain in 43h")
     }()
-
-    let soumayaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 21h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let cinetecaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Cineteca", rain: "Rain in 44h")
     }()
-
-    let airportLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Airport"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let abastosLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Abastos", rain: "Rain in 45h")
     }()
-
-    let airportRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Raining now"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let unamLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "UNAM", rain: "Rain in 46h")
     }()
-
-    let castleLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Chapultepec"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
+    let aztecaLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Azteca", rain: "Rain in 47h")
     }()
-
-    let castleRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 9h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let sixflagsLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Six Flags", rain: "Rain in 48h")
     }()
-
-    let condesaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Condesa"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let condesaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 11h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let santafeLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Santa Fé"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let santafeRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 3h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let cinetecaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Cineteca"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let cinetecaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 13h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let abastosLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Abastos"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let abastosRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 3h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let unamLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "UNAM"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let unamRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Raining now"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let aztecaLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Azteca"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let aztecaRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 10h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let sixflagsLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Six Flags"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let sixflagsRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 5h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
-    }()
-
-    let xochimilcoLabel: UILabel = {
-        let landmarkLabel = UILabel()
-        landmarkLabel.text = "Xochimilco"
-        landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
-        landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return landmarkLabel
-    }()
-
-    let xochimilcoRainLabel: UILabel = {
-        let rainLabel = UILabel()
-        rainLabel.text = "Rain in 2h"
-        rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 13)
-        rainLabel.translatesAutoresizingMaskIntoConstraints = false
-        return rainLabel
+    let xochimilcoLandmarkView: MapLandmarkView = {
+        return MapLandmarkView(name: "Xochimilco", rain: "Rain in 49h")
     }()
 
     let titleLabel: UILabel = {
@@ -311,113 +86,70 @@ class MapViewController: UIViewController {
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
 
         view.addSubview(backgroundImageView)
-        view.addSubview(arenaLabel)
-        view.addSubview(arenaRainLabel)
-        view.addSubview(basilicaLabel)
-        view.addSubview(basilicaRainLabel)
-        view.addSubview(bicentenarioLabel)
-        view.addSubview(bicentenarioRainLabel)
-        view.addSubview(buenavistaLabel)
-        view.addSubview(buenavistaRainLabel)
-        view.addSubview(soumayaLabel)
-        view.addSubview(soumayaRainLabel)
-        view.addSubview(airportLabel)
-        view.addSubview(airportRainLabel)
-        view.addSubview(castleLabel)
-        view.addSubview(castleRainLabel)
-        view.addSubview(condesaLabel)
-        view.addSubview(condesaRainLabel)
-        view.addSubview(santafeLabel)
-        view.addSubview(santafeRainLabel)
-        view.addSubview(cinetecaLabel)
-        view.addSubview(cinetecaRainLabel)
-        view.addSubview(abastosLabel)
-        view.addSubview(abastosRainLabel)
-        view.addSubview(unamLabel)
-        view.addSubview(unamRainLabel)
-        view.addSubview(aztecaLabel)
-        view.addSubview(aztecaRainLabel)
-        view.addSubview(sixflagsLabel)
-        view.addSubview(sixflagsRainLabel)
-        view.addSubview(xochimilcoLabel)
-        view.addSubview(xochimilcoRainLabel)
+
+        view.addSubview(arenaLandmarkView)
+        view.addSubview(basilicaLandmarkView)
+        view.addSubview(bicentenarioLandmarkView)
+        view.addSubview(buenavistaLandmarkView)
+        view.addSubview(airportLandmarkView)
+        view.addSubview(soumayaLandmarkView)
+        view.addSubview(castleLandmarkView)
+        view.addSubview(condesaLandmarkView)
+        view.addSubview(santafeLandmarkView)
+        view.addSubview(cinetecaLandmarkView)
+        view.addSubview(abastosLandmarkView)
+        view.addSubview(unamLandmarkView)
+        view.addSubview(aztecaLandmarkView)
+        view.addSubview(sixflagsLandmarkView)
+        view.addSubview(xochimilcoLandmarkView)
 
         view.addSubview(titleLabel)
 
-        arenaLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: backgroundImageView.bounds.height * 0.165).isActive = true
-        arenaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.35).isActive = true
-        arenaRainLabel.topAnchor.constraint(equalTo: arenaLabel.bottomAnchor).isActive = true
-        arenaRainLabel.centerXAnchor.constraint(equalTo: arenaLabel.centerXAnchor).isActive = true
+        arenaLandmarkView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: backgroundImageView.bounds.height * 0.165).isActive = true
+        arenaLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.35).isActive = true
 
-        basilicaLabel.topAnchor.constraint(equalTo: arenaLabel.topAnchor, constant: backgroundImageView.bounds.height * 0.01).isActive = true
-        basilicaLabel.leadingAnchor.constraint(equalTo: arenaLabel.trailingAnchor, constant: backgroundImageView.bounds.width * 0.1).isActive = true
-        basilicaRainLabel.topAnchor.constraint(equalTo: basilicaLabel.bottomAnchor).isActive = true
-        basilicaRainLabel.centerXAnchor.constraint(equalTo: basilicaLabel.centerXAnchor).isActive = true
+        basilicaLandmarkView.topAnchor.constraint(equalTo: arenaLandmarkView.topAnchor, constant: backgroundImageView.bounds.height * 0.01).isActive = true
+        basilicaLandmarkView.leadingAnchor.constraint(equalTo: arenaLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.2).isActive = true
 
-        bicentenarioLabel.topAnchor.constraint(equalTo: basilicaRainLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.001).isActive = true
-        bicentenarioLabel.leadingAnchor.constraint(equalTo:  view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.25).isActive = true
-        bicentenarioRainLabel.topAnchor.constraint(equalTo: bicentenarioLabel.bottomAnchor).isActive = true
-        bicentenarioRainLabel.centerXAnchor.constraint(equalTo: bicentenarioLabel.centerXAnchor).isActive = true
+        bicentenarioLandmarkView.topAnchor.constraint(equalTo: basilicaLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.04).isActive = true
+        bicentenarioLandmarkView.leadingAnchor.constraint(equalTo:  view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.25).isActive = true
 
-        buenavistaLabel.topAnchor.constraint(equalTo: bicentenarioLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.01).isActive = true
-        buenavistaLabel.leadingAnchor.constraint(equalTo: bicentenarioLabel.trailingAnchor).isActive = true
-        buenavistaRainLabel.topAnchor.constraint(equalTo: buenavistaLabel.bottomAnchor).isActive = true
-        buenavistaRainLabel.centerXAnchor.constraint(equalTo: buenavistaLabel.centerXAnchor).isActive = true
+        buenavistaLandmarkView.topAnchor.constraint(equalTo: bicentenarioLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.035).isActive = true
+        buenavistaLandmarkView.leadingAnchor.constraint(equalTo: bicentenarioLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.2).isActive = true
 
-        soumayaLabel.topAnchor.constraint(equalTo: buenavistaLabel.bottomAnchor).isActive = true
-        soumayaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.20).isActive = true
-        soumayaRainLabel.topAnchor.constraint(equalTo: soumayaLabel.bottomAnchor).isActive = true
-        soumayaRainLabel.centerXAnchor.constraint(equalTo: soumayaLabel.centerXAnchor).isActive = true
+        airportLandmarkView.topAnchor.constraint(equalTo: buenavistaLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.02).isActive = true
+        airportLandmarkView.leadingAnchor.constraint(equalTo: basilicaLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.15).isActive = true
 
-        airportLabel.topAnchor.constraint(equalTo: buenavistaLabel.bottomAnchor).isActive = true
-        airportLabel.leadingAnchor.constraint(equalTo: basilicaLabel.trailingAnchor, constant: backgroundImageView.bounds.width * 0.025).isActive = true
-        airportRainLabel.topAnchor.constraint(equalTo: airportLabel.bottomAnchor).isActive = true
-        airportRainLabel.centerXAnchor.constraint(equalTo: airportLabel.centerXAnchor).isActive = true
+        soumayaLandmarkView.topAnchor.constraint(equalTo: buenavistaLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.01).isActive = true
+        soumayaLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.21).isActive = true
 
-        castleLabel.topAnchor.constraint(equalTo: soumayaRainLabel.bottomAnchor, constant:  backgroundImageView.bounds.height * 0.01).isActive = true
-        castleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.16).isActive = true
-        castleRainLabel.topAnchor.constraint(equalTo: castleLabel.bottomAnchor).isActive = true
-        castleRainLabel.centerXAnchor.constraint(equalTo: castleLabel.centerXAnchor).isActive = true
+        castleLandmarkView.topAnchor.constraint(equalTo: soumayaLandmarkView.bottomAnchor, constant:  backgroundImageView.bounds.height * 0.055).isActive = true
+        castleLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.16).isActive = true
 
-        condesaLabel.topAnchor.constraint(equalTo: soumayaRainLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.001).isActive = true
-        condesaLabel.leadingAnchor.constraint(equalTo: castleLabel.trailingAnchor, constant: backgroundImageView.bounds.width * 0.03).isActive = true
-        condesaRainLabel.topAnchor.constraint(equalTo: condesaLabel.bottomAnchor).isActive = true
-        condesaRainLabel.centerXAnchor.constraint(equalTo: condesaLabel.centerXAnchor).isActive = true
+        condesaLandmarkView.topAnchor.constraint(equalTo: soumayaLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.04).isActive = true
+        condesaLandmarkView.leadingAnchor.constraint(equalTo: castleLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.25).isActive = true
 
-        santafeLabel.topAnchor.constraint(equalTo: castleRainLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.04).isActive = true
-        santafeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.03).isActive = true
-        santafeRainLabel.topAnchor.constraint(equalTo: santafeLabel.bottomAnchor).isActive = true
-        santafeRainLabel.centerXAnchor.constraint(equalTo: santafeLabel.centerXAnchor).isActive = true
+        santafeLandmarkView.topAnchor.constraint(equalTo: castleLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.085).isActive = true
+        santafeLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.02).isActive = true
 
-        cinetecaLabel.topAnchor.constraint(equalTo: santafeLabel.topAnchor).isActive = true
-        cinetecaLabel.leadingAnchor.constraint(equalTo: condesaRainLabel.leadingAnchor).isActive = true
-        cinetecaRainLabel.topAnchor.constraint(equalTo: cinetecaLabel.bottomAnchor).isActive = true
-        cinetecaRainLabel.centerXAnchor.constraint(equalTo: cinetecaLabel.centerXAnchor).isActive = true
+        cinetecaLandmarkView.topAnchor.constraint(equalTo: santafeLandmarkView.topAnchor).isActive = true
+        cinetecaLandmarkView.leadingAnchor.constraint(equalTo: condesaLandmarkView.leadingAnchor).isActive = true
 
-        abastosLabel.topAnchor.constraint(equalTo: cinetecaLabel.topAnchor).isActive = true
-        abastosLabel.leadingAnchor.constraint(equalTo: cinetecaLabel.trailingAnchor, constant: backgroundImageView.bounds.width * 0.18).isActive = true
-        abastosRainLabel.topAnchor.constraint(equalTo: abastosLabel.bottomAnchor).isActive = true
-        abastosRainLabel.centerXAnchor.constraint(equalTo: abastosLabel.centerXAnchor).isActive = true
+        abastosLandmarkView.topAnchor.constraint(equalTo: cinetecaLandmarkView.topAnchor).isActive = true
+        abastosLandmarkView.leadingAnchor.constraint(equalTo: airportLandmarkView.leadingAnchor, constant: backgroundImageView.bounds.width * 0.02).isActive = true
 
-        unamLabel.topAnchor.constraint(equalTo: santafeLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.07).isActive = true
-        unamLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.30).isActive = true
-        unamRainLabel.topAnchor.constraint(equalTo: unamLabel.bottomAnchor).isActive = true
-        unamRainLabel.centerXAnchor.constraint(equalTo: unamLabel.centerXAnchor).isActive = true
+        unamLandmarkView.topAnchor.constraint(equalTo: santafeLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.08).isActive = true
+        unamLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.30).isActive = true
 
-        aztecaLabel.topAnchor.constraint(equalTo: unamLabel.bottomAnchor).isActive = true
-        aztecaLabel.leadingAnchor.constraint(equalTo: unamLabel.trailingAnchor, constant: backgroundImageView.bounds.width * 0.1).isActive = true
-        aztecaRainLabel.topAnchor.constraint(equalTo: aztecaLabel.bottomAnchor).isActive = true
-        aztecaRainLabel.centerXAnchor.constraint(equalTo: aztecaLabel.centerXAnchor).isActive = true
+        aztecaLandmarkView.topAnchor.constraint(equalTo: unamLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.01).isActive = true
+        aztecaLandmarkView.centerXAnchor.constraint(equalTo: buenavistaLandmarkView.centerXAnchor, constant: backgroundImageView.bounds.width * 0.05).isActive = true
 
-        sixflagsLabel.topAnchor.constraint(equalTo: aztecaRainLabel.bottomAnchor).isActive = true
-        sixflagsLabel.leadingAnchor.constraint(equalTo: castleLabel.leadingAnchor).isActive = true
-        sixflagsRainLabel.topAnchor.constraint(equalTo: sixflagsLabel.bottomAnchor).isActive = true
-        sixflagsRainLabel.centerXAnchor.constraint(equalTo: sixflagsLabel.centerXAnchor).isActive = true
+        sixflagsLandmarkView.topAnchor.constraint(equalTo: aztecaLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.06
+        ).isActive = true
+        sixflagsLandmarkView.leadingAnchor.constraint(equalTo: castleLandmarkView.leadingAnchor).isActive = true
 
-        xochimilcoLabel.topAnchor.constraint(equalTo: sixflagsLabel.bottomAnchor, constant: backgroundImageView.bounds.height * 0.03).isActive = true
-        xochimilcoLabel.leadingAnchor.constraint(equalTo: aztecaLabel.trailingAnchor).isActive = true
-        xochimilcoRainLabel.topAnchor.constraint(equalTo: xochimilcoLabel.bottomAnchor).isActive = true
-        xochimilcoRainLabel.centerXAnchor.constraint(equalTo: xochimilcoLabel.centerXAnchor).isActive = true
+        xochimilcoLandmarkView.topAnchor.constraint(equalTo: sixflagsLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.05).isActive = true
+        xochimilcoLandmarkView.leadingAnchor.constraint(equalTo: aztecaLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.14).isActive = true
 
         titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -backgroundImageView.bounds.height * 0.12).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -backgroundImageView.bounds.width * 0.04).isActive = true
@@ -426,49 +158,49 @@ class MapViewController: UIViewController {
 
     func refreshRainData() {
         let arenaDescription = getLandmarkDescription(for: "Arena Ciudad de Mexico")
-        arenaRainLabel.text = arenaDescription
+        arenaLandmarkView.rainLabel.text = arenaDescription
 
         let basilicaDescription = getLandmarkDescription(for: "Basílica de Guadalupe")
-        basilicaRainLabel.text = basilicaDescription
+        basilicaLandmarkView.rainLabel.text = basilicaDescription
 
         let bicentenarioDescription = getLandmarkDescription(for: "Parque Bicentenario")
-        bicentenarioRainLabel.text = bicentenarioDescription
+        bicentenarioLandmarkView.rainLabel.text = bicentenarioDescription
 
         let buenavistaDescription = getLandmarkDescription(for: "Fórum Buenavista")
-        buenavistaRainLabel.text = buenavistaDescription
+        buenavistaLandmarkView.rainLabel.text = buenavistaDescription
 
         let soumayaDescription = getLandmarkDescription(for: "Museo Soumaya")
-        soumayaRainLabel.text = soumayaDescription
+        soumayaLandmarkView.rainLabel.text = soumayaDescription
 
         let airportDescription = getLandmarkDescription(for: "Aeropuerto")
-        airportRainLabel.text = airportDescription
+        airportLandmarkView.rainLabel.text = airportDescription
 
         let castleDescription = getLandmarkDescription(for: "Castillo de Chapultepec")
-        castleRainLabel.text = castleDescription
+        castleLandmarkView.rainLabel.text = castleDescription
 
         let condesaDescription = getLandmarkDescription(for: "Parque México")
-        condesaRainLabel.text = condesaDescription
+        condesaLandmarkView.rainLabel.text = condesaDescription
 
         let santafeDescription = getLandmarkDescription(for: "Santa Fé")
-        santafeRainLabel.text = santafeDescription
+        santafeLandmarkView.rainLabel.text = santafeDescription
 
         let cinetecaDescription = getLandmarkDescription(for: "Cineteca")
-        cinetecaRainLabel.text = cinetecaDescription
+        cinetecaLandmarkView.rainLabel.text = cinetecaDescription
 
         let abastosDescription = getLandmarkDescription(for: "Central de Abastos")
-        abastosRainLabel.text = abastosDescription
+        abastosLandmarkView.rainLabel.text = abastosDescription
 
         let unamDescription = getLandmarkDescription(for: "UNAM")
-        unamRainLabel.text = unamDescription
+        unamLandmarkView.rainLabel.text = unamDescription
 
         let aztecaDescription = getLandmarkDescription(for: "Estadio Azteca")
-        aztecaRainLabel.text = aztecaDescription
+        aztecaLandmarkView.rainLabel.text = aztecaDescription
 
         let sixflagsDescription = getLandmarkDescription(for: "Six Flags")
-        sixflagsRainLabel.text = sixflagsDescription
+        sixflagsLandmarkView.rainLabel.text = sixflagsDescription
 
         let xochimilcoDescription = getLandmarkDescription(for: "Trajineras Xochimilco")
-        xochimilcoRainLabel.text = xochimilcoDescription
+        xochimilcoLandmarkView.rainLabel.text = xochimilcoDescription
     }
 
     func getLandmarkDescription(for name: String) -> String? {

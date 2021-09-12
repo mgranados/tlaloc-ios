@@ -27,6 +27,7 @@ Landmarks `[lat, long]` :
 - Parque Delta `[19.4029573,-99.1565445]`
 - Torre Pemex `[19.4391379,-99.1771313]`
 - Arena Ciudad de Mexico `[19.4976224,-99.1773167]`
-- Mercado Jamaica `[19.4077323,-99.1307508]`
+- Mercado Jamaica `[19.4077323,-99.1307508]` **DEPRECATED**
+- Foro Sol `[19.4075681,-99.1019913]`
 
 Consuming `tomorrow.io` API for weather forecasts.
