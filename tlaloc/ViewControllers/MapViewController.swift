@@ -56,6 +56,7 @@ class MapViewController: UIViewController {
     let xochimilcoLandmarkView: MapLandmarkView = {
         return MapLandmarkView(name: "Xochimilco", rain: "Rain in 49h")
     }()
+    let forosolLandmarkView = MapLandmarkView(name: "Foro Sol", rain: "Rain in 50h")
 
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -102,6 +103,7 @@ class MapViewController: UIViewController {
         view.addSubview(aztecaLandmarkView)
         view.addSubview(sixflagsLandmarkView)
         view.addSubview(xochimilcoLandmarkView)
+        view.addSubview(forosolLandmarkView)
 
         view.addSubview(titleLabel)
 
@@ -150,6 +152,9 @@ class MapViewController: UIViewController {
 
         xochimilcoLandmarkView.topAnchor.constraint(equalTo: sixflagsLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.05).isActive = true
         xochimilcoLandmarkView.leadingAnchor.constraint(equalTo: aztecaLandmarkView.trailingAnchor, constant: backgroundImageView.bounds.width * 0.14).isActive = true
+
+        forosolLandmarkView.topAnchor.constraint(equalTo: airportLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.045).isActive = true
+        forosolLandmarkView.leadingAnchor.constraint(equalTo: xochimilcoLandmarkView.leadingAnchor).isActive = true
 
         titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -backgroundImageView.bounds.height * 0.12).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -backgroundImageView.bounds.width * 0.04).isActive = true
@@ -201,6 +206,9 @@ class MapViewController: UIViewController {
 
         let xochimilcoDescription = getLandmarkDescription(for: "Trajineras Xochimilco")
         xochimilcoLandmarkView.rainLabel.text = xochimilcoDescription
+
+        let forosolDescription = getLandmarkDescription(for: "Foro Sol")
+        forosolLandmarkView.rainLabel.text = forosolDescription
     }
 
     func getLandmarkDescription(for name: String) -> String? {
