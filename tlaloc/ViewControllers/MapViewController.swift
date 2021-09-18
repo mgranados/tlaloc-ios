@@ -214,7 +214,6 @@ class MapViewController: UIViewController {
     func getLandmarkDescription(for name: String) -> String? {
         guard let landmarkIndex = self.landmarks.firstIndex(where: {$0?.name == name}) else { return nil }
         let landmarkData = self.landmarks[landmarkIndex]
-        let landmarkDescription = landmarkData?.description.humanIntervalFromDescription()?.replacingOccurrences(of: " hours", with: "h").replacingOccurrences(of: " hour", with: "h").replacingOccurrences(of: " minutes", with: "m").replacingOccurrences(of: " minute", with: "m")
-        return landmarkDescription
+        return landmarkData?.description.humanHourFromDescription()
     }
 }
