@@ -214,6 +214,28 @@ class MapViewController: UIViewController {
     func getLandmarkDescription(for name: String) -> String? {
         guard let landmarkIndex = self.landmarks.firstIndex(where: {$0?.name == name}) else { return nil }
         let landmarkData = self.landmarks[landmarkIndex]
-        return landmarkData?.description.humanHourFromDescription()
+        if let nextRainEpoch = landmarkData?.nextRainEpoch {
+            return getNextRainHumanDescription(nextRainEpoch: nextRainEpoch)
+        } else {
+            return "No idea"
+        }
+    }
+
+    func getNextRainHumanDescription(nextRainEpoch: Int) -> String {
+        if nextRainEpoch < 1 {
+            return "No rain"
+        }
+
+        let nextRainDate = Date(timeIntervalSince1970: Double(nextRainEpoch))
+        let untilNextRain = Date().distance(to: nextRainDate)
+        let twentyHoursInSeconds = 60 * 60 * 20.0
+        if untilNextRain < 1200 {
+            return "Raining"
+        }
+        if untilNextRain >= twentyHoursInSeconds {
+            return "No rain"
+        }
+        let hour = Calendar.current.component(.hour, from: nextRainDate)
+        return "Rain at \(hour)"
     }
 }

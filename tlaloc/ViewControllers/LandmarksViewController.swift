@@ -84,8 +84,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
         }
         cell?.titleLabel.text = landmark.name
 
-        let humanDescription = landmark.description.humanIntervalFromDescription()
-        cell?.descriptionLabel.text = "\(humanDescription ?? "Honestly, don't know.")"
+        cell?.descriptionLabel.text = getNextRainHumanDescription(nextRainEpoch: landmark.nextRainEpoch)
         if let temperature = landmark.weatherReports?.first?.temperature {
             cell?.temperatureLabel.text = "\(Int(temperature))°C"
         }
@@ -109,5 +108,25 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
                 self?.collectionView.refreshControl?.endRefreshing()
             }
         }
+    }
+
+    func getNextRainHumanDescription(nextRainEpoch: Int) -> String {
+        if nextRainEpoch < 1 {
+            return "No upcoming rain"
+        }
+
+        let nextRainDate = Date(timeIntervalSince1970: Double(nextRainEpoch))
+        let untilNextRain = Date().distance(to: nextRainDate)
+        let formatter = RelativeDateTimeFormatter()
+        let twentyHoursInSeconds = 60 * 60 * 20.0
+        if untilNextRain < 1200 {
+            return "Raining now"
+        }
+        if untilNextRain >= twentyHoursInSeconds {
+            return "No upcoming rain"
+        }
+        formatter.dateTimeStyle = .named
+        let str = formatter.localizedString(fromTimeInterval: untilNextRain)
+        return "Rain: \(str)"
     }
 }
