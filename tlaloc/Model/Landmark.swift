@@ -12,6 +12,7 @@ struct Landmark: Codable {
     var latitude: String
     var longitude: String
     var description: String
+    var nextRainEpoch: Int
     var weatherReports: [WeatherReport]?
 
     enum CodingKeys: String, CodingKey {
@@ -20,6 +21,7 @@ struct Landmark: Codable {
         case longitude
         case description
         case weatherReports = "reports"
+        case nextRainEpoch = "next_rain"
     }
 }
 
