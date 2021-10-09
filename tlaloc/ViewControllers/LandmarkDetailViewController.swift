@@ -36,7 +36,7 @@ class LandmarkDetailViewController: UITableViewController {
         let rainDescriptor = UILabel()
         if let description = selectedLandmark?.description {
             let humanDescription = description.humanIntervalFromDescription()
-            rainDescriptor.text = "Next rain: \(humanDescription ?? "don't know")"
+            rainDescriptor.text = humanDescription
         }
         rainDescriptor.font = UIFont.systemFont(ofSize: 20)
         rainDescriptor.textColor = .white
