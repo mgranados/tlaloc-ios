@@ -30,6 +30,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
 
 
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
@@ -42,6 +43,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
             }
         }
 
+        collectionView.backgroundColor = .black
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.tintColor = UIColor.red
         collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshLandmarks), for: .valueChanged)
