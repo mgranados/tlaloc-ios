@@ -67,6 +67,17 @@ class MapViewController: UIViewController {
         return titleLabel
     }()
 
+    let refreshButtonView: UIImageView = {
+        let large = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+
+        let refreshIcon = UIImage(systemName: "arrow.clockwise", withConfiguration: large)
+        let iconView = UIImageView(image: refreshIcon)
+        iconView.tintColor = .white
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.isUserInteractionEnabled = true
+        return iconView
+    }()
+
     override func viewDidLoad() {
         let config = UIImage.SymbolConfiguration(scale: .default)
         let mapImage = UIImage(systemName: "map.fill", withConfiguration: config)
@@ -81,10 +92,12 @@ class MapViewController: UIViewController {
             }
         }
 
-
         let backgroundImageView = UIImageView(frame: view.bounds)
         backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(.red)
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(refreshTapped(_:)))
+        refreshButtonView.addGestureRecognizer(tapGestureRecognizer)
 
         view.addSubview(backgroundImageView)
 
@@ -105,6 +118,7 @@ class MapViewController: UIViewController {
         view.addSubview(xochimilcoLandmarkView)
         view.addSubview(forosolLandmarkView)
 
+        view.addSubview(refreshButtonView)
         view.addSubview(titleLabel)
 
         arenaLandmarkView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: backgroundImageView.bounds.height * 0.165).isActive = true
@@ -156,9 +170,11 @@ class MapViewController: UIViewController {
         forosolLandmarkView.topAnchor.constraint(equalTo: airportLandmarkView.bottomAnchor, constant: backgroundImageView.bounds.height * 0.045).isActive = true
         forosolLandmarkView.leadingAnchor.constraint(equalTo: xochimilcoLandmarkView.leadingAnchor).isActive = true
 
+        refreshButtonView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        refreshButtonView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -16).isActive = true
+
         titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -backgroundImageView.bounds.height * 0.12).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -backgroundImageView.bounds.width * 0.04).isActive = true
-
     }
 
     func refreshRainData() {
@@ -237,5 +253,27 @@ class MapViewController: UIViewController {
         }
         let hour = Calendar.current.component(.hour, from: nextRainDate)
         return "Rain at \(hour)"
+    }
+
+    @objc func refreshTapped(_ sender: UITapGestureRecognizer) {
+        refreshButtonView.rotate()
+        networkManager.getLandmarks {
+            [weak self] (newLandmarks) in
+            DispatchQueue.main.async {
+                self?.landmarks = newLandmarks
+                self?.refreshRainData()
+            }
+        }
+    }
+}
+
+extension UIView{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = 1
+        self.layer.add(rotation, forKey: "rotationAnimation")
     }
 }
