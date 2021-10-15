@@ -92,6 +92,11 @@ class MapViewController: UIViewController {
             }
         }
 
+        // iPhone SE / 5
+        if (self.view.frame.width <= 320) {
+            titleLabel.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
+        }
+
         let backgroundImageView = UIImageView(frame: view.bounds)
         backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(.red)
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
