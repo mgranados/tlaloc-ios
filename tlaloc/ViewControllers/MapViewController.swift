@@ -261,6 +261,9 @@ class MapViewController: UIViewController {
     }
 
     @objc func refreshTapped(_ sender: UITapGestureRecognizer) {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.impactOccurred()
+
         refreshButtonView.rotate()
         networkManager.getLandmarks {
             [weak self] (newLandmarks) in
