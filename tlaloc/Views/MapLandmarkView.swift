@@ -19,9 +19,10 @@ class MapLandmarkView: UIView {
 
     let rainLabel: UILabel = {
         let rainLabel = UILabel()
-        rainLabel.text = "Rain in 5h"
+        rainLabel.text = "RAIN IN 5h"
         rainLabel.textColor = .white
-        rainLabel.font = UIFont.systemFont(ofSize: 12)
+        let rainFont = UIFont.systemFont(ofSize: 13).addingUpperCaseSmallCaps
+        rainLabel.font = rainFont
         rainLabel.translatesAutoresizingMaskIntoConstraints = false
         return rainLabel
     }()
@@ -45,4 +46,22 @@ class MapLandmarkView: UIView {
     required init?(coder: NSCoder) {
         preconditionFailure("You shall not build with storyboard")
     }
+}
+
+extension UIFont {
+    func addingAttributes(_ attributes: [UIFontDescriptor.AttributeName : Any] = [:]) -> UIFont {
+       return UIFont(descriptor: fontDescriptor.addingAttributes(attributes), size: pointSize)
+   }
+
+   /// Returns a UIFont object based on the receiver with small caps applied to upper case letters
+   var addingUpperCaseSmallCaps: UIFont {
+       return addingAttributes([
+        UIFontDescriptor.AttributeName.featureSettings: [
+               [
+                UIFontDescriptor.FeatureKey.featureIdentifier: kUpperCaseType,
+                UIFontDescriptor.FeatureKey.typeIdentifier: kUpperCaseSmallCapsSelector
+               ]
+           ]
+       ])
+   }
 }

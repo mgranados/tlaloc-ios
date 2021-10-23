@@ -253,7 +253,7 @@ class MapViewController: UIViewController {
         guard let landmarkIndex = self.landmarks.firstIndex(where: {$0?.name == name}) else { return nil }
         let landmarkData = self.landmarks[landmarkIndex]
         if let nextRainEpoch = landmarkData?.nextRainEpoch {
-            return getNextRainHumanDescription(nextRainEpoch: nextRainEpoch)
+            return getNextRainHumanDescription(nextRainEpoch: nextRainEpoch).uppercased()
         } else {
             return "No idea"
         }
@@ -261,7 +261,7 @@ class MapViewController: UIViewController {
 
     func getNextRainHumanDescription(nextRainEpoch: Int) -> String {
         if nextRainEpoch < 1 {
-            return "No rain"
+            return "No Rain"
         }
 
         let nextRainDate = Date(timeIntervalSince1970: Double(nextRainEpoch))
@@ -271,10 +271,10 @@ class MapViewController: UIViewController {
             return "Raining"
         }
         if untilNextRain >= twentyHoursInSeconds {
-            return "No rain"
+            return "No Rain"
         }
         let hour = Calendar.current.component(.hour, from: nextRainDate)
-        return "Rain at \(hour)"
+        return "Rain \(hour):00"
     }
 
     @objc func refreshTapped(_ sender: UITapGestureRecognizer) {

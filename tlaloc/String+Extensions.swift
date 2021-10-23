@@ -62,14 +62,14 @@ extension String {
                 let untilThen = Date().distance(to: nextRainDate)
                 let twentyHoursInSeconds = 60 * 60 * 20.0
                 if untilThen <= 0 {
-                    return "Raining"
+                    return "RAINING"
                 }
                 if untilThen >= twentyHoursInSeconds {
-                    return "No Rain"
+                    return "NO RAIN"
                 }
 
                 let hour = Calendar.current.component(.hour, from: nextRainDate)
-                return "Rain at \(hour)"
+                return "RAIN AT \(hour)"
             }
         }
         return nil
