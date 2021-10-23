@@ -109,6 +109,7 @@ class MapViewController: UIViewController {
             lastUpdateLabel.font = UIFont.systemFont(ofSize: 10, weight: .light)
         }
 
+        view.backgroundColor = "#325b7b".hexStringToUIColor()
         let backgroundImageView = UIImageView(frame: view.bounds)
         let primaryTintColor = "#64b5f6".hexStringToUIColor()
         backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(primaryTintColor)
