@@ -63,9 +63,10 @@ class CustomCell: UICollectionViewCell {
 
         iconView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24).isActive = true
         iconView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        let primaryTintColor = "#64b5f6".hexStringToUIColor()
 
         let selectedBg = UIView(frame: bounds)
-        selectedBg.backgroundColor = .red
+        selectedBg.backgroundColor = primaryTintColor
         selectedBg.layer.cornerRadius = 10
         self.selectedBackgroundView = selectedBg
         let slightlyMoved = CGPoint(x: self.layer.bounds.midX + 5, y: self.layer.bounds.midY - 5)
