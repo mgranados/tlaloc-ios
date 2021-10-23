@@ -42,10 +42,11 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
                 self?.collectionView.reloadData()
             }
         }
+        let primaryTintColor = "#64b5f6".hexStringToUIColor()
 
         collectionView.backgroundColor = .black
         collectionView.refreshControl = UIRefreshControl()
-        collectionView.refreshControl?.tintColor = UIColor.red
+        collectionView.refreshControl?.tintColor = primaryTintColor
         collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshLandmarks), for: .valueChanged)
     }
 

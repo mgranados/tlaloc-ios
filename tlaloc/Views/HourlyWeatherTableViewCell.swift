@@ -69,9 +69,10 @@ class HourlyWeatherTableViewCell: UITableViewCell {
         degreesLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
 
         let selectedBgView = UIView(frame: bounds)
-        selectedBgView.backgroundColor = .red
-        selectedBackgroundView = selectedBgView
+        let primaryTintColor = "#64b5f6".hexStringToUIColor()
 
+        selectedBgView.backgroundColor = primaryTintColor
+        selectedBackgroundView = selectedBgView
     }
 
     required init?(coder: NSCoder) {

@@ -84,7 +84,6 @@ class MapViewController: UIViewController {
         lastUpdateLabel.textColor = .white
         lastUpdateLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
         lastUpdateLabel.translatesAutoresizingMaskIntoConstraints = false
-
         return lastUpdateLabel
     }()
 
@@ -111,7 +110,8 @@ class MapViewController: UIViewController {
         }
 
         let backgroundImageView = UIImageView(frame: view.bounds)
-        backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(.red)
+        let primaryTintColor = "#64b5f6".hexStringToUIColor()
+        backgroundImageView.image = UIImage(named: "officialMap")?.withTintColor(primaryTintColor)
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(refreshTapped(_:)))
