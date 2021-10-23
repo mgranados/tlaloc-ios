@@ -12,7 +12,7 @@ class MapLandmarkView: UIView {
         let landmarkLabel = UILabel()
         landmarkLabel.text = "Six Flags"
         landmarkLabel.textColor = .white
-        landmarkLabel.font = UIFont.systemFont(ofSize: 14)
+        landmarkLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         landmarkLabel.translatesAutoresizingMaskIntoConstraints = false
         return landmarkLabel
     }()
