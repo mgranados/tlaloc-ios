@@ -78,6 +78,16 @@ class MapViewController: UIViewController {
         return iconView
     }()
 
+    let lastUpdateLabel: UILabel = {
+        let lastUpdateLabel = UILabel()
+        lastUpdateLabel.text = "last update: beginning of time"
+        lastUpdateLabel.textColor = .white
+        lastUpdateLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        lastUpdateLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        return lastUpdateLabel
+    }()
+
     override func viewDidLoad() {
         let config = UIImage.SymbolConfiguration(scale: .default)
         let mapImage = UIImage(systemName: "map.fill", withConfiguration: config)
@@ -89,12 +99,15 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.landmarks = newLandmarks
                 self?.refreshRainData()
+                let lastUpdateString = self?.formatLastUpdateFrom(Date())
+                self?.lastUpdateLabel.text = "last update: \(lastUpdateString ?? "can't recall")"
             }
         }
 
         // iPhone SE / 5
         if (self.view.frame.width <= 320) {
             titleLabel.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
+            lastUpdateLabel.font = UIFont.systemFont(ofSize: 10, weight: .light)
         }
 
         let backgroundImageView = UIImageView(frame: view.bounds)
@@ -125,6 +138,7 @@ class MapViewController: UIViewController {
 
         view.addSubview(refreshButtonView)
         view.addSubview(titleLabel)
+        view.addSubview(lastUpdateLabel)
 
         arenaLandmarkView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: backgroundImageView.bounds.height * 0.165).isActive = true
         arenaLandmarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: backgroundImageView.bounds.width * 0.35).isActive = true
@@ -180,6 +194,9 @@ class MapViewController: UIViewController {
 
         titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -backgroundImageView.bounds.height * 0.12).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -backgroundImageView.bounds.width * 0.04).isActive = true
+
+        lastUpdateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        lastUpdateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
     }
 
     func refreshRainData() {
@@ -270,8 +287,22 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.landmarks = newLandmarks
                 self?.refreshRainData()
+                let lastUpdateString = self?.formatLastUpdateFrom(Date())
+                self?.lastUpdateLabel.text = "last update: \(lastUpdateString ?? "can't recall")"
             }
         }
+    }
+
+    func formatLastUpdateFrom(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateStyle = .short
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeZone = TimeZone.current
+        timeFormatter.locale = Locale.current
+        timeFormatter.timeStyle = .short
+        return "\(dateFormatter.string(from: date)) \(timeFormatter.string(from: date))"
     }
 }
 
