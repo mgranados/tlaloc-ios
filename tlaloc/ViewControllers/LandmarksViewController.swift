@@ -10,8 +10,6 @@ import UIKit
 class LandmarksViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     public let cellId: String = "cellId"
     var weatherStore: WeatherStore? = nil
-    var networkManager = NetworkManager()
-    var landmarks: [Landmark?] = []
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,13 +33,14 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
 
-        networkManager.getLandmarksDetailed {
-            [weak self] (newLandmarks) in
+        weatherStore?.updateDetailLandmarks {
+            [weak self] () in
             DispatchQueue.main.async {
-                self?.landmarks = newLandmarks
                 self?.collectionView.reloadData()
             }
         }
+        weatherStore?.updateLandmarks {}
+
         let primaryTintColor = "#64b5f6".hexStringToUIColor()
 
         collectionView.backgroundColor = .black
@@ -63,7 +62,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let landmarkDetail = LandmarkDetailViewController()
-        guard let landmark = landmarks[indexPath.row] else {
+        guard let landmark = weatherStore?.landmarks[indexPath.row] else {
             preconditionFailure("Unknown landmark tapped")
         }
         landmarkDetail.selectedLandmark = landmark
@@ -77,12 +76,12 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return landmarks.count
+        return weatherStore!.landmarks.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CustomCell
-        guard let landmark = landmarks[indexPath.row] else {
+        guard let landmark = weatherStore?.landmarks[indexPath.row] else {
             return UICollectionViewCell()
         }
         cell?.titleLabel.text = landmark.name
@@ -103,14 +102,16 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     @objc func handleRefreshLandmarks() {
         self.collectionView.refreshControl?.beginRefreshing()
-        networkManager.getLandmarksDetailed {
-            [weak self] (newLandmarks) in
+
+        weatherStore?.updateDetailLandmarks {
+            [weak self] () in
             DispatchQueue.main.async {
-                self?.landmarks = newLandmarks
                 self?.collectionView.reloadData()
                 self?.collectionView.refreshControl?.endRefreshing()
             }
         }
+
+        weatherStore?.updateLandmarks {}
     }
 
     func getNextRainHumanDescription(nextRainEpoch: Int) -> String {

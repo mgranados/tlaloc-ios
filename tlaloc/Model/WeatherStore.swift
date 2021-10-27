@@ -10,5 +10,7 @@ import Foundation
 
 protocol WeatherStore {
     var landmarks: [Landmark] { get }
+    var lastUpdate: String { get set }
     func updateLandmarks(_ completion: @escaping () -> ())
+    func updateDetailLandmarks(_ completion: @escaping () -> ())
 }

@@ -11,6 +11,10 @@ struct LocalWeatherStore: WeatherStore {
     func updateLandmarks(_ completion: @escaping () -> ()) {
         print("not here yet")
     }
+    func updateDetailLandmarks(_ completion: @escaping () -> ()) {
+        print("not here as well")
+    }
+    var lastUpdate = "Right now"
 
     var landmarks: [Landmark] {
         get {
