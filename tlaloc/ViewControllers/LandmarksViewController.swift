@@ -10,6 +10,7 @@ import UIKit
 class LandmarksViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     public let cellId: String = "cellId"
     var weatherStore: WeatherStore? = nil
+    let notificationCenter = NotificationCenter.default
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -30,6 +31,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
         super.viewDidLoad()
         view.backgroundColor = .black
 
+        notificationCenter.addObserver(self, selector: #selector(reloadLandmarkList), name: Notification.Name(Notifications.ReloadLandmarksList.rawValue), object: nil)
 
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: cellId)
 
@@ -39,7 +41,10 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
                 self?.collectionView.reloadData()
             }
         }
-        weatherStore?.updateLandmarks {}
+        weatherStore?.updateLandmarks {
+            [weak self] in
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadMapLandmarks.rawValue), object: nil)
+        }
 
         let primaryTintColor = "#64b5f6".hexStringToUIColor()
 
@@ -47,6 +52,10 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.tintColor = primaryTintColor
         collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshLandmarks), for: .valueChanged)
+    }
+
+    deinit {
+        notificationCenter.removeObserver(self)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -111,7 +120,14 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
             }
         }
 
-        weatherStore?.updateLandmarks {}
+        weatherStore?.updateLandmarks {
+            [weak self] in
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadMapLandmarks.rawValue), object: nil)
+        }
+    }
+
+    @objc func reloadLandmarkList() {
+        self.collectionView.reloadData()
     }
 
     func getNextRainHumanDescription(nextRainEpoch: Int) -> String {

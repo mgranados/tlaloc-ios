@@ -40,7 +40,7 @@ class NetworkWeatherStore: WeatherStore {
         let timeFormatter = DateFormatter()
         timeFormatter.timeZone = TimeZone.current
         timeFormatter.locale = Locale.current
-        timeFormatter.timeStyle = .short
+        timeFormatter.timeStyle = .medium
         return "\(dateFormatter.string(from: date)) \(timeFormatter.string(from: date))"
     }
 }

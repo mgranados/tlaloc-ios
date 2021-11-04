@@ -10,6 +10,7 @@ import UIKit
 class MapViewController: UIViewController {
     var weatherStore: WeatherStore? = nil
 
+    let notificationCenter = NotificationCenter.default
     let arenaLandmarkView: MapLandmarkView = {
         return MapLandmarkView(name: "Arena", rain: "Rain in 35h")
     }()
@@ -93,6 +94,8 @@ class MapViewController: UIViewController {
         tabBarController?.selectedIndex = 0
 
         // Notif here for update Landmarks
+        notificationCenter.addObserver(self, selector: #selector(reloadMapLandmarks), name: Notification.Name(Notifications.ReloadMapLandmarks.rawValue), object: nil)
+
 
         guard let weatherStore = weatherStore else {
             preconditionFailure("we need a weatherStore, ser")
@@ -205,6 +208,14 @@ class MapViewController: UIViewController {
         lastUpdateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
     }
 
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+
+    @objc func reloadMapLandmarks() {
+        self.refreshRainData()
+    }
+
     func refreshRainData() {
         let arenaDescription = getLandmarkDescription(for: "Arena Ciudad de Mexico")
         arenaLandmarkView.rainLabel.text = arenaDescription
@@ -293,7 +304,8 @@ class MapViewController: UIViewController {
             }
         }
         weatherStore?.updateDetailLandmarks {
-            print("updateDetailLandmarks it seems really")
+            [weak self] in
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadLandmarksList.rawValue), object: nil)
         }
     }
     func formatLastUpdateFrom(_ date: Date) -> String {
