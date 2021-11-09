@@ -108,7 +108,8 @@ class MapViewController: UIViewController {
             }
         }
         weatherStore.updateDetailLandmarks {
-            print("updateDetailLandmarks it seems really")
+            [weak self] () in
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadMapLandmarks.rawValue), object: nil)
         }
 
         // iPhone SE / 5
@@ -305,6 +306,7 @@ class MapViewController: UIViewController {
         }
         weatherStore?.updateDetailLandmarks {
             [weak self] in
+            // Main Queue?
             self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadLandmarksList.rawValue), object: nil)
         }
     }

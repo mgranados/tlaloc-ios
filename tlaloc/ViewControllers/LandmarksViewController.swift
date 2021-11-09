@@ -43,6 +43,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
         }
         weatherStore?.updateLandmarks {
             [weak self] in
+            //DispatchQueue main is irrelevant
             self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadMapLandmarks.rawValue), object: nil)
         }
 
@@ -71,7 +72,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let landmarkDetail = LandmarkDetailViewController()
-        guard let landmark = weatherStore?.landmarks[indexPath.row] else {
+        guard let landmark = weatherStore?.landmarksDetailed[indexPath.row] else {
             preconditionFailure("Unknown landmark tapped")
         }
         landmarkDetail.selectedLandmark = landmark
@@ -90,7 +91,7 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CustomCell
-        guard let landmark = weatherStore?.landmarks[indexPath.row] else {
+        guard let landmark = weatherStore?.landmarksDetailed[indexPath.row] else {
             return UICollectionViewCell()
         }
         cell?.titleLabel.text = landmark.name

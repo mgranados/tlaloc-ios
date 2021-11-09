@@ -9,7 +9,9 @@ import Foundation
 
 class NetworkWeatherStore: WeatherStore {
     var landmarks: [Landmark] = []
+    var landmarksDetailed: [Landmark] = []
     var lastUpdate: String = ""
+    var lastDetailedUpdate: String = ""
     var networkManager = NetworkManager()
 
     func updateLandmarks(_ completion: @escaping () -> ()) {
@@ -25,8 +27,8 @@ class NetworkWeatherStore: WeatherStore {
     func updateDetailLandmarks(_ completion: @escaping () -> ()) {
         networkManager.getLandmarksDetailed { (newDetailedLandmarks) in
             DispatchQueue.main.async {
-                self.landmarks = newDetailedLandmarks
-                self.lastUpdate = "last updated: \(self.formatLastUpdateFrom(Date()))"
+                self.landmarksDetailed = newDetailedLandmarks
+                self.lastDetailedUpdate = "last update: \(self.formatLastUpdateFrom(Date()))"
                 completion()
             }
         }

@@ -23,7 +23,6 @@ struct NetworkManager {
 
         let task = URLSession.shared.dataTask(with: url) {
             data, response, error in
-
             if let data = data {
                 let encoder = JSONDecoder()
                 let landmarkResponse = try! encoder.decode(LandmarkReponse.self, from: data)
