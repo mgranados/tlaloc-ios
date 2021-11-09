@@ -8,9 +8,9 @@
 import UIKit
 
 class MapViewController: UIViewController {
-    var networkManager = NetworkManager()
-    var landmarks: [Landmark?] = []
+    var weatherStore: WeatherStore? = nil
 
+    let notificationCenter = NotificationCenter.default
     let arenaLandmarkView: MapLandmarkView = {
         return MapLandmarkView(name: "Arena", rain: "Rain in 35h")
     }()
@@ -93,14 +93,23 @@ class MapViewController: UIViewController {
         tabBarItem = UITabBarItem(title: "Map", image: mapImage, tag: 0)
         tabBarController?.selectedIndex = 0
 
-        networkManager.getLandmarks {
-            [weak self] (newLandmarks) in
+        // Notif here for update Landmarks
+        notificationCenter.addObserver(self, selector: #selector(reloadMapLandmarks), name: Notification.Name(Notifications.ReloadMapLandmarks.rawValue), object: nil)
+
+
+        guard let weatherStore = weatherStore else {
+            preconditionFailure("we need a weatherStore, ser")
+        }
+
+        weatherStore.updateLandmarks {
+            [weak self] () in
             DispatchQueue.main.async {
-                self?.landmarks = newLandmarks
                 self?.refreshRainData()
-                let lastUpdateString = self?.formatLastUpdateFrom(Date())
-                self?.lastUpdateLabel.text = "last update: \(lastUpdateString ?? "can't recall")"
             }
+        }
+        weatherStore.updateDetailLandmarks {
+            [weak self] () in
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadMapLandmarks.rawValue), object: nil)
         }
 
         // iPhone SE / 5
@@ -200,6 +209,14 @@ class MapViewController: UIViewController {
         lastUpdateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
     }
 
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+
+    @objc func reloadMapLandmarks() {
+        self.refreshRainData()
+    }
+
     func refreshRainData() {
         let arenaDescription = getLandmarkDescription(for: "Arena Ciudad de Mexico")
         arenaLandmarkView.rainLabel.text = arenaDescription
@@ -248,16 +265,14 @@ class MapViewController: UIViewController {
 
         let forosolDescription = getLandmarkDescription(for: "Foro Sol")
         forosolLandmarkView.rainLabel.text = forosolDescription
+
+        lastUpdateLabel.text = weatherStore?.lastUpdate
     }
 
     func getLandmarkDescription(for name: String) -> String? {
-        guard let landmarkIndex = self.landmarks.firstIndex(where: {$0?.name == name}) else { return nil }
-        let landmarkData = self.landmarks[landmarkIndex]
-        if let nextRainEpoch = landmarkData?.nextRainEpoch {
-            return getNextRainHumanDescription(nextRainEpoch: nextRainEpoch).uppercased()
-        } else {
-            return "No idea"
-        }
+        guard let landmarkIndex = weatherStore?.landmarks.firstIndex(where: {$0.name == name}) else { return nil }
+        let landmarkData = weatherStore?.landmarks[landmarkIndex]
+        return getNextRainHumanDescription(nextRainEpoch: landmarkData!.nextRainEpoch).uppercased()
     }
 
     func getNextRainHumanDescription(nextRainEpoch: Int) -> String {
@@ -283,17 +298,18 @@ class MapViewController: UIViewController {
         feedbackGenerator.impactOccurred()
 
         refreshButtonView.rotate()
-        networkManager.getLandmarks {
-            [weak self] (newLandmarks) in
+        weatherStore?.updateLandmarks {
+            [weak self] () in
             DispatchQueue.main.async {
-                self?.landmarks = newLandmarks
                 self?.refreshRainData()
-                let lastUpdateString = self?.formatLastUpdateFrom(Date())
-                self?.lastUpdateLabel.text = "last update: \(lastUpdateString ?? "can't recall")"
             }
         }
+        weatherStore?.updateDetailLandmarks {
+            [weak self] in
+            // Main Queue?
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadLandmarksList.rawValue), object: nil)
+        }
     }
-
     func formatLastUpdateFrom(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.current

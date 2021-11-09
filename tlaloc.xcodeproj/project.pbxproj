@@ -12,6 +12,7 @@
 		2129ACFB26D1C81600996D17 /* LandmarksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */; };
 		212D272926B45B4C0049253E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272826B45B4C0049253E /* CustomCell.swift */; };
 		212D272B26B5CBD50049253E /* LandmarkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */; };
+		2130C14C2733A0BD00B320E9 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130C14B2733A0BD00B320E9 /* Notifications.swift */; };
 		2138525826D5BF7600D0FAD8 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138525726D5BF7600D0FAD8 /* UIImage+Extensions.swift */; };
 		2190604C26E3F22B0053D9BF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2190604B26E3F22B0053D9BF /* TabBarViewController.swift */; };
 		2190604E26E411F80053D9BF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2190604D26E411F80053D9BF /* MapViewController.swift */; };
@@ -36,6 +37,7 @@
 		2129ACFA26D1C81600996D17 /* LandmarksDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksDataSource.swift; sourceTree = "<group>"; };
 		212D272826B45B4C0049253E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		212D272A26B5CBD50049253E /* LandmarkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailViewController.swift; sourceTree = "<group>"; };
+		2130C14B2733A0BD00B320E9 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		2138525726D5BF7600D0FAD8 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		2190604B26E3F22B0053D9BF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2190604D26E411F80053D9BF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				2129ACF626D1421F00996D17 /* NetworkWeatherStore.swift */,
 				21BED99626AF6DC4004949E0 /* WeatherReport.swift */,
 				21BED99426AF6DB2004949E0 /* Landmark.swift */,
+				2130C14B2733A0BD00B320E9 /* Notifications.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2130C14C2733A0BD00B320E9 /* Notifications.swift in Sources */,
 				2129ACFB26D1C81600996D17 /* LandmarksDataSource.swift in Sources */,
 				2196A29E26EC54E800970A4B /* MapLandmarkView.swift in Sources */,
 				2129ACF926D1497600996D17 /* NetworkManager.swift in Sources */,
