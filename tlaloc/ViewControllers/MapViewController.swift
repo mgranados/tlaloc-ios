@@ -93,7 +93,6 @@ class MapViewController: UIViewController {
         tabBarItem = UITabBarItem(title: "Map", image: mapImage, tag: 0)
         tabBarController?.selectedIndex = 0
 
-        // Notif here for update Landmarks
         notificationCenter.addObserver(self, selector: #selector(reloadMapLandmarks), name: Notification.Name(Notifications.ReloadMapLandmarks.rawValue), object: nil)
 
 
@@ -306,7 +305,6 @@ class MapViewController: UIViewController {
         }
         weatherStore?.updateDetailLandmarks {
             [weak self] in
-            // Main Queue?
             self?.notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.ReloadLandmarksList.rawValue), object: nil)
         }
     }

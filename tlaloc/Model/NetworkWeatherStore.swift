@@ -18,6 +18,7 @@ class NetworkWeatherStore: WeatherStore {
         networkManager.getLandmarks { (newLandmarks) in
             DispatchQueue.main.async {
                 self.landmarks = newLandmarks
+                self.landmarksDetailed = newLandmarks
                 self.lastUpdate = "last update: \(self.formatLastUpdateFrom(Date()))"
                 completion()
             }
