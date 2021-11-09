@@ -51,8 +51,10 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
         collectionView.backgroundColor = .black
         collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.attributedTitle = NSAttributedString(string: weatherStore?.lastDetailedUpdate ?? "update", attributes: [NSAttributedString.Key.foregroundColor: primaryTintColor])
         collectionView.refreshControl?.tintColor = primaryTintColor
         collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshLandmarks), for: .valueChanged)
+        collectionView.alwaysBounceVertical = true
     }
 
     deinit {
@@ -118,6 +120,8 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
                 self?.collectionView.refreshControl?.endRefreshing()
+                let primaryTintColor = "#64b5f6".hexStringToUIColor()
+                self?.collectionView.refreshControl?.attributedTitle = NSAttributedString(string: self?.weatherStore?.lastDetailedUpdate ?? "update", attributes: [NSAttributedString.Key.foregroundColor: primaryTintColor])
             }
         }
 
@@ -129,6 +133,8 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
 
     @objc func reloadLandmarkList() {
         self.collectionView.reloadData()
+        let primaryTintColor = "#64b5f6".hexStringToUIColor()
+        self.collectionView.refreshControl?.attributedTitle = NSAttributedString(string: self.weatherStore?.lastDetailedUpdate ?? "update", attributes: [NSAttributedString.Key.foregroundColor: primaryTintColor])
     }
 
     func getNextRainHumanDescription(nextRainEpoch: Int) -> String {
