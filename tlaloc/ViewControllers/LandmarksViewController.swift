@@ -119,9 +119,9 @@ class LandmarksViewController: UICollectionViewController, UICollectionViewDeleg
             [weak self] () in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
-                self?.collectionView.refreshControl?.endRefreshing()
                 let primaryTintColor = "#64b5f6".hexStringToUIColor()
                 self?.collectionView.refreshControl?.attributedTitle = NSAttributedString(string: self?.weatherStore?.lastDetailedUpdate ?? "update", attributes: [NSAttributedString.Key.foregroundColor: primaryTintColor])
+                self?.collectionView.refreshControl?.endRefreshing()
             }
         }
 
